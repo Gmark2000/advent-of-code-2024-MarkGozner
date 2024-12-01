@@ -35,9 +35,9 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 ## Structure
 
 Each day's solution is in its own directory (Day01, Day02, etc.) containing:
-- Solution code
-- Input files
-- Documentation of the approach
+- Solution code (Program.cs)
+- Input files 
+- Documentation of the approach (Documentation.md)
 
 Solutions are written in C#.
 
