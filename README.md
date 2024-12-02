@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (1/25)
+## Progress (2/25)
 
 | Day | Status | Solution |
 |-----|--------|-----------|
