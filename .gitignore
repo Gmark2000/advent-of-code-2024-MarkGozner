@@ -55,3 +55,26 @@ Desktop.ini
 *.swp
 *.*~
 *.tmp
+
+# Ignore build output directories
+**/bin/
+**/obj/
+
+# Ignore input files
+**/input.txt
+
+# Specific file types
+*.dll
+*.pdb
+*.cache
+*.txt
+*.editorconfig
+*.json
+!appsettings.json
+!package.json
+
+# Specific VS files
+*.AssemblyInfo.cs
+*.AssemblyInfoInputs.cache
+*.csproj.FileListAbsolute.txt
+*.GeneratedMSBuildEditorConfig.editorconfig
