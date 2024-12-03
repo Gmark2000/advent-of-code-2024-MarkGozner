@@ -2,13 +2,13 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (2/25)
+## Progress (3/25)
 
 | Day | Status | Solution |
 |-----|--------|-----------|
 | [Day 1: Historian Hysteria](https://adventofcode.com/2024/day/1) | ✅ | [Solution](Day01/) |
 | [Day 2: Red-Nosed Reports](https://adventofcode.com/2024/day/2) | ✅ | [Solution](Day02/) |
-| [Day 3](https://adventofcode.com/2024/day/3) | ⬜ | |
+| [Day 3: Mull It Over](https://adventofcode.com/2024/day/3) | ✅ | [Solution](Day03/)) |
 | [Day 4](https://adventofcode.com/2024/day/4) | ⬜ | |
 | [Day 5](https://adventofcode.com/2024/day/5) | ⬜ | |
 | [Day 6](https://adventofcode.com/2024/day/6) | ⬜ | |
