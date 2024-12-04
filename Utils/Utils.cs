@@ -12,4 +12,6 @@ public static class Utils
         Console.WriteLine($"{description} result is: {result}");
         Console.WriteLine($"{description} execution time: {stopwatch.ElapsedMilliseconds}ms");
     } 
+    
+    public static string[] ReadInput(string path) => File.ReadAllLines(path);
 }
