@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (5/25)
+## Progress (6/25)
 
 | Day | Status | Solution |
 |-----|--------|-----------|
@@ -11,7 +11,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 3: Mull It Over](https://adventofcode.com/2024/day/3) | ✅ | [Solution](Day03/) |
 | [Day 4: Ceres Search](https://adventofcode.com/2024/day/4) | ✅ | [Solution](Day04/) |
 | [Day 5: Print Queue](https://adventofcode.com/2024/day/5) | ✅ | [Solution](Day05/) |
-| [Day 6](https://adventofcode.com/2024/day/6) | ⬜ | |
+| [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) | ✅ | [Solution](Day06/) |
 | [Day 7](https://adventofcode.com/2024/day/7) | ⬜ | |
 | [Day 8](https://adventofcode.com/2024/day/8) | ⬜ | |
 | [Day 9](https://adventofcode.com/2024/day/9) | ⬜ | |
