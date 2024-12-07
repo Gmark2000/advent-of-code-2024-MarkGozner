@@ -2,17 +2,17 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (6/25)
+## Progress (7/25)
 
 | Day | Status | Solution |
 |-----|--------|-----------|
-| [Day 1: Historian Hysteria](https://adventofcode.com/2024/day/1) | ✅ | [Day1: Solution](Day01/) |
-| [Day 2: Red-Nosed Reports](https://adventofcode.com/2024/day/2) | ✅ | [Day2: Solution](Day02/) |
-| [Day 3: Mull It Over](https://adventofcode.com/2024/day/3) | ✅ | [Day3: Solution](Day03/) |
-| [Day 4: Ceres Search](https://adventofcode.com/2024/day/4) | ✅ | [Day4: Solution](Day04/) |
-| [Day 5: Print Queue](https://adventofcode.com/2024/day/5) | ✅ | [Day5: Solution](Day05/) |
-| [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) | ✅ | [Day6: Solution](Day06/) |
-| [Day 7](https://adventofcode.com/2024/day/7) | ⬜ | |
+| [Day 1: Historian Hysteria](https://adventofcode.com/2024/day/1) | ✅ | [Solution](Day01/) |
+| [Day 2: Red-Nosed Reports](https://adventofcode.com/2024/day/2) | ✅ | [Solution](Day02/) |
+| [Day 3: Mull It Over](https://adventofcode.com/2024/day/3) | ✅ | [Solution](Day03/) |
+| [Day 4: Ceres Search](https://adventofcode.com/2024/day/4) | ✅ | [Solution](Day04/) |
+| [Day 5: Print Queue](https://adventofcode.com/2024/day/5) | ✅ | [Solution](Day05/) |
+| [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) | ✅ | [Solution](Day06/) |
+| [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7) | ✅ | [Solution](Day07/) |
 | [Day 8](https://adventofcode.com/2024/day/8) | ⬜ | |
 | [Day 9](https://adventofcode.com/2024/day/9) | ⬜ | |
 | [Day 10](https://adventofcode.com/2024/day/10) | ⬜ | |
