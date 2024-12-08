@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (7/25)
+## Progress (8/25)
 
 | Day | Status | Solution |
 |-----|--------|-----------|
@@ -13,7 +13,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 5: Print Queue](https://adventofcode.com/2024/day/5) | ✅ | [Solution](Day05/) |
 | [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) | ✅ | [Solution](Day06/) |
 | [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7) | ✅ | [Solution](Day07/) |
-| [Day 8](https://adventofcode.com/2024/day/8) | ⬜ | |
+| [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8) | ✅ | [Solution](Day08/) |
 | [Day 9](https://adventofcode.com/2024/day/9) | ⬜ | |
 | [Day 10](https://adventofcode.com/2024/day/10) | ⬜ | |
 | [Day 11](https://adventofcode.com/2024/day/11) | ⬜ | |
