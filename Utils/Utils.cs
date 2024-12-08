@@ -13,6 +13,8 @@ public static class Utils
         Console.WriteLine($"{description} execution time: {stopwatch.ElapsedMilliseconds}ms");
         return result;
     }
-    
-    public static string[] ReadInput(string path) => File.ReadAllLines(path);
+
+    public static string[] ReadInput(string path) => File.ReadAllLines(path)
+                                                         .Where(line => !string.IsNullOrEmpty(line))
+                                                         .ToArray();
 }
