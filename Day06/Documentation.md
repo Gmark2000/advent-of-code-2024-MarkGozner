@@ -1,4 +1,4 @@
-# Advent of Code 2023 - Day 6: Guard Patrol
+# Advent of Code 2024 - Day 6: Guard Patrol
 
 ## Problem Overview
 The problem involves predicting the path of a guard in a 2D grid-based map. The guard follows specific movement rules and we need to:
