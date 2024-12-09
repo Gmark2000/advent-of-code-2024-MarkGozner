@@ -1,4 +1,4 @@
-# Advent of Code 2023 - Day 8: Resonant Collinearity
+# Advent of Code 2024 - Day 8: Resonant Collinearity
 
 ## Problem Overview
 1. Part 1: Finding antinodes where pairs of same-frequency antennas create resonant points with a specific 1:2 distance ratio
