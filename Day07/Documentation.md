@@ -1,4 +1,4 @@
-# Advent of Code 2023 - Day 7: Bridge Repair
+# Advent of Code 2024 - Day 7: Bridge Repair
 
 ## Problem Overview
 The problem involves analyzing calibration equations for bridge repair. Engineers need to:
