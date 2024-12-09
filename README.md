@@ -14,7 +14,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6) | ✅ | [Solution](Day06/) |
 | [Day 7: Bridge Repair](https://adventofcode.com/2024/day/7) | ✅ | [Solution](Day07/) |
 | [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8) | ✅ | [Solution](Day08/) |
-| [Day 9: Disk Fragmenter](https://adventofcode.com/2024/day/9) | ✅ | [Solution](Day09/)) |  
+| [Day 9: Disk Fragmenter](https://adventofcode.com/2024/day/9) | ✅ | [Solution](Day09/) |  
 | [Day 10](https://adventofcode.com/2024/day/10) | ⬜ | |
 | [Day 11](https://adventofcode.com/2024/day/11) | ⬜ | |
 | [Day 12](https://adventofcode.com/2024/day/12) | ⬜ | |
