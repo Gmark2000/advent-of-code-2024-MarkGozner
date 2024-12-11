@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (10/25)
+## Progress (11/25)
 
 | Day | Status | Solution |
 |-----|--------|-----------|
@@ -16,7 +16,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8) | ✅ | [Solution](Day08/) |
 | [Day 9: Disk Fragmenter](https://adventofcode.com/2024/day/9) | ✅ | [Solution](Day09/) |  
 | [Day 10: Hoof It](https://adventofcode.com/2024/day/10) | ✅ | [Solution](Day10/) |
-| [Day 11](https://adventofcode.com/2024/day/11) | ⬜ | |
+| [Day 11: Plutonian Pebbles](https://adventofcode.com/2024/day/11) | ✅ | [Solution](Day11/) |
 | [Day 12](https://adventofcode.com/2024/day/12) | ⬜ | |
 | [Day 13](https://adventofcode.com/2024/day/13) | ⬜ | |
 | [Day 14](https://adventofcode.com/2024/day/14) | ⬜ | |
