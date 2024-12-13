@@ -78,7 +78,7 @@
 
 ## Key Optimizations
 - Uses decimal type to handle large numbers without overflow
-- Implements Cramer's rule for efficient equation solving
+- Implements efficient equation solving
 - Avoids brute force for Part 2 where numbers are too large
 - Early exit conditions for impossible solutions
 
