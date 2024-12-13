@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (12/25)
+## Progress (13/25)
 
 | Day | Status | Solution |
 |-----|--------|-----------|
@@ -18,7 +18,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 10: Hoof It](https://adventofcode.com/2024/day/10) | ✅ | [Solution](Day10/) |
 | [Day 11: Plutonian Pebbles](https://adventofcode.com/2024/day/11) | ✅ | [Solution](Day11/) |
 | [Day 12: Garden Groups](https://adventofcode.com/2024/day/12) | ✅ | [Solution](Day12/)|
-| [Day 13](https://adventofcode.com/2024/day/13) | ⬜ | |
+| [Day 13: Claw Contraption](https://adventofcode.com/2024/day/13) | ✅ | [Solution](Day13/) |
 | [Day 14](https://adventofcode.com/2024/day/14) | ⬜ | |
 | [Day 15](https://adventofcode.com/2024/day/15) | ⬜ | |
 | [Day 16](https://adventofcode.com/2024/day/16) | ⬜ | |
