@@ -4,13 +4,14 @@ namespace Utils;
 
 public static class Utils
 {
-    public static T ExecuteAndMeasure<T>(string description, Func<T> operation)
+    public static T ExecuteAndMeasure<T>(string description, Func<T> operation, string? timeoutDescription = null)
     {
         var stopwatch = Stopwatch.StartNew();
         var result = operation();
         stopwatch.Stop();
+        
         Console.WriteLine($"{description} result is: {result}");
-        Console.WriteLine($"{description} execution time: {stopwatch.ElapsedMilliseconds}ms");
+        Console.WriteLine($"{timeoutDescription ?? description} execution time: {stopwatch.ElapsedMilliseconds}ms");
         return result;
     }
 
