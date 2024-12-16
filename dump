@@ -1,213 +1,187 @@
-var input = "input.txt";
-var inputString = File.ReadAllText(input);
-Console.WriteLine($"Part 1: {ProcessPart1(inputString)}");
-Console.WriteLine($"Part 2: {ProcessPart2(inputString)}");
+const int East = 0, South = 1, West = 2, North = 3;
+const int MoveCost = 1;
+const int RotateCost = 1000;
 
-static int ProcessPart1(string input)
+const char Wall = '#';
+const char Start = 'S';
+const char End = 'E';
+
+string[] grid = File.ReadAllLines("input.txt");
+var (start, end) = FindStartAndEnd(grid);
+var (minCost, optimalTileCount) = SolveMaze(grid, start, end);
+
+Console.WriteLine($"Part 1: {minCost}");
+Console.WriteLine($"Part 2: {optimalTileCount}");
+
+return 0;
+
+static (Point start, Point end) FindStartAndEnd(string[] grid)
 {
-    return ProcessInstructions(input, false);
-}
-
-static int ProcessPart2(string input)
-{
-    return ProcessInstructions(input, true);
-}
-
-static int ProcessInstructions(string input, bool enableControlInstructions)
-{
-    int totalSum = 0;
-    bool mulEnabled = true;
-    var mulState = new StateProcessor();
-    var doState = new StateProcessor();
-    var dontState = new StateProcessor();
-
-    char[][] controlInstructions = [
-        ['d', 'o', '(', ')'],
-        ['d', 'o', 'n', '\'', 't', '(', ')']
-     ];
-
-    foreach (char c in input)
+    Point start = default, end = default;
+    for (int y = 0; y < grid.Length; y++)
     {
-        ProcessMulInstruction(c, mulState, ref totalSum, mulEnabled);
-
-        if (enableControlInstructions)
+        for (int x = 0; x < grid[y].Length; x++)
         {
-            ProcessControlInstruction(c, doState, ref mulEnabled, true, controlInstructions);
-            ProcessControlInstruction(c, dontState, ref mulEnabled, false, controlInstructions);
+            if (grid[y][x] == Start) start = new(x, y);
+            if (grid[y][x] == End) end = new(x, y);
+        }
+    }
+    return (start, end);
+}
+
+static (int minCost, int optimalTileCount) SolveMaze(string[] grid, Point start, Point end)
+{
+    var width = grid[0].Length;
+    var height = grid.Length;
+
+    var searchState = InitializeSearchState(start);
+    var result = ExploreAllPaths(searchState, grid, start, end, width, height);
+    ExploreOptimalPaths(result.optimalTiles, result.pathsToExplore);
+
+    return (result.minCost, result.optimalTiles.Count);
+}
+
+static SearchState InitializeSearchState(Point start)
+{
+    var state = new SearchState
+    {
+        Queue = new PriorityQueue<SearchNode, int>(),
+        CostToState = [],
+        OptimalTiles = [],
+        PathsToExplore = [],
+        MinCost = int.MaxValue
+    };
+
+    var initialNode = new SearchNode(new State(start, East), new HashSet<Point> { start }, 0);
+    state.Queue.Enqueue(initialNode, 0);
+    return state;
+}
+
+static (int minCost, HashSet<Point> optimalTiles, List<HashSet<Point>> pathsToExplore)
+ExploreAllPaths(SearchState state, string[] grid, Point start, Point end, int width, int height)
+{
+    while (state.Queue.Count > 0)
+    {
+        var current = state.Queue.Dequeue();
+
+        if (!ShouldContinueExploration(state, current))
+            continue;
+
+        state.CostToState[current.CurrentState] = current.Cost;
+
+        if (HasReachedEnd(state, current, end))
+            continue;
+
+        ExploreNextStates(state, current, grid, width, height);
+    }
+
+    return (state.MinCost, state.OptimalTiles, state.PathsToExplore);
+}
+
+static bool ShouldContinueExploration(SearchState state, SearchNode current)
+{
+    if (current.Cost > state.MinCost)
+        return false;
+
+    if (state.CostToState.TryGetValue(current.CurrentState, out var knownCost))
+    {
+        if (current.Cost > knownCost)
+            return false;
+
+        if (current.Cost == knownCost)
+        {
+            foreach (var tile in current.Path)
+                state.OptimalTiles.Add(tile);
         }
     }
 
-    return totalSum;
+    return true;
 }
 
-static void ProcessMulInstruction(char c, StateProcessor state, ref int totalSum, bool mulEnabled)
+static bool HasReachedEnd(SearchState state, SearchNode current, Point end)
 {
-    switch (state.CurrentState)
+    if (!current.CurrentState.Pos.Equals(end))
+        return false;
+
+    if (current.Cost < state.MinCost)
     {
-        case 0:
-            if (c == 'm') state.CurrentState = 1;
-            break;
-        case 1:
-            if (c == 'u') state.CurrentState = 2;
-            else state.Reset();
-            break;
-        case 2:
-            if (c == 'l') state.CurrentState = 3;
-            else state.Reset();
-            break;
-        case 3:
-            if (c == '(')
-            {
-                state.CurrentState = 4;
-                state.FirstNumber = 0;
-            }
-            else state.Reset();
-            break;
-        case 4:
-            if (char.IsDigit(c))
-            {
-                state.FirstNumber = state.FirstNumber * 10 + (c - '0');
-            }
-            else if (c == ',')
-            {
-                state.CurrentState = 5;
-                state.SecondNumber = 0;
-            }
-            else state.Reset();
-            break;
-        case 5:
-            if (char.IsDigit(c))
-            {
-                state.SecondNumber = state.SecondNumber * 10 + (c - '0');
-            }
-            else if (c == ')' && mulEnabled)
-            {
-                totalSum += state.FirstNumber * state.SecondNumber;
-                state.Reset();
-            }
-            else state.Reset();
-            break;
+        state.MinCost = current.Cost;
+        state.OptimalTiles.Clear();
+        state.PathsToExplore.Clear();
     }
+
+    if (current.Cost == state.MinCost)
+    {
+        state.PathsToExplore.Add(current.Path);
+        foreach (var tile in current.Path)
+            state.OptimalTiles.Add(tile);
+    }
+
+    return true;
 }
 
-static void ProcessControlInstruction(char c, StateProcessor state, ref bool mulEnabled, bool enableValue, char[][] controlInstructions)
+static void ExploreNextStates(SearchState state, SearchNode current, string[] grid, int width, int height)
 {
-    var pattern = enableValue ? controlInstructions[0] : controlInstructions[1];
-
-    if (state.CurrentState < pattern.Length)
+    foreach (var next in GetNextStates(current.CurrentState, grid, width, height))
     {
-        if (c == pattern[state.CurrentState])
+        var newCost = current.Cost + (next.isRotation ? RotateCost : MoveCost);
+
+        if (newCost <= state.MinCost)
         {
-            state.CurrentState++;
-            if (state.CurrentState == pattern.Length)
-            {
-                mulEnabled = enableValue;
-                state.Reset();
-            }
-        }
-        else
-        {
-            state.Reset();
-            if (c == pattern[0]) state.CurrentState = 1;
+            var newPath = new HashSet<Point>(current.Path) { next.state.Pos };
+            var nextNode = new SearchNode(next.state, newPath, newCost);
+            state.Queue.Enqueue(nextNode, newCost);
         }
     }
 }
 
-class StateProcessor
+static IEnumerable<(State state, bool isRotation)> GetNextStates(
+    State current, string[] grid, int width, int height)
 {
-    public int CurrentState { get; set; }
-    public int FirstNumber { get; set; }
-    public int SecondNumber { get; set; }
+    yield return (current with { Dir = (current.Dir + 3) % 4 }, true);
+    yield return (current with { Dir = (current.Dir + 1) % 4 }, true);
 
-    public void Reset()
+    var (dx, dy) = GetDirectionOffset(current.Dir);
+    var newPos = new Point(current.Pos.X + dx, current.Pos.Y + dy);
+
+    if (IsValidMove(newPos, grid, width, height))
     {
-        CurrentState = 0;
-        FirstNumber = 0;
-        SecondNumber = 0;
+        yield return (new State(newPos, current.Dir), false);
     }
 }
 
-
----------------------------------------------------
-  # Advent of Code 2024 - Day 3: Mull It Over
-
-## Algorithm Explanation
-
-The solution uses a state machine approach to process corrupted memory instructions, particularly focusing on multiplication operations and control instructions.
-
-### Core Components
-
-#### StateProcessor Class
-```csharp
-class StateProcessor
+static (int dx, int dy) GetDirectionOffset(int direction) => direction switch
 {
-    public int CurrentState { get; set; }    // Tracks current state in the state machine
-    public int FirstNumber { get; set; }     // Stores first number in multiplication
-    public int SecondNumber { get; set; }    // Stores second number in multiplication
-    public void Reset()                      // Resets all state values to 0
+    East => (1, 0),
+    South => (0, 1),
+    West => (-1, 0),
+    North => (0, -1),
+    _ => throw new NotImplementedException()
+};
+
+static bool IsValidMove(Point p, string[] grid, int width, int height) =>
+    p.X >= 0 && p.X < width &&
+    p.Y >= 0 && p.Y < height &&
+    grid[p.Y][p.X] != Wall;
+
+static void ExploreOptimalPaths(HashSet<Point> optimalTiles, List<HashSet<Point>> pathsToExplore)
+{
+    foreach (var path in pathsToExplore)
+    {
+        foreach (var tile in path)
+            optimalTiles.Add(tile);
+    }
 }
-```
 
-### Main Functions
+record struct Point(int X, int Y);
+record struct State(Point Pos, int Dir);
+record struct SearchNode(State CurrentState, HashSet<Point> Path, int Cost);
 
-1. `ProcessPart1(string input)`
-   - Handles basic multiplication instructions without control statements (without do()/don't() statements)
-   - Processes input string character by character
-   - Returns sum of all valid multiplications
-   - Passes `false` to ProcessInstructions to disable control instructions
-
-2. `ProcessPart2(string input)`
-   - Extends Part 1 by adding support for control instructions (do/don't)
-   - Passes `true` to ProcessInstructions to enable control instructions
-   - Returns sum of only enabled multiplications
-
-3. `ProcessInstructions(string input, bool enableControlInstructions)`
-   - Core processing function that handles both parts
-   - Maintains three state processors:
-     * mulState: Tracks multiplication instruction state
-     * doState: Tracks 'do()' instruction state
-     * dontState: Tracks 'don't()' instruction state
-   - Uses control instructions array:
-     ```csharp
-     char[][] controlInstructions = [
-         ['d', 'o', '(', ')'],              // do instruction characters
-         ['d', 'o', 'n', '\'', 't', '(', ')'] // don't instruction characters
-     ];
-     ```
-
-4. `ProcessMulInstruction(char c, StateProcessor state, ref int totalSum, bool mulEnabled)`
-   - State machine for processing multiplication instructions
-   - States:
-     * 0: Looking for 'm'
-     * 1: Found 'm', looking for 'u'
-     * 2: Found 'u', looking for 'l'
-     * 3: Found 'l', looking for '('
-     * 4: Reading first number
-     * 5: Reading second number and looking for ')'
-   - Only adds to totalSum if mulEnabled is true
-
-5. `ProcessControlInstruction(char c, StateProcessor state, ref bool mulEnabled, bool enableValue, char[][] controlInstructions)`
-   - Handles do() and don't() instructions
-   - Uses pattern matching to identify valid control instructions
-   - Updates mulEnabled flag based on the instruction type
-
-### State Machine Logic
-
-#### Multiplication Pattern Recognition
-The state machine recognizes valid multiplication patterns:
-- Must match exactly: mul(X,Y) where X and Y are 1-3 digit numbers
-- No spaces or other characters allowed within the pattern
-- Only processes if multiplication is currently enabled
-
-#### Control Instructions
-- do(): Enables multiplication operations
-- don't(): Disables multiplication operations
-- Only the most recent control instruction applies
-- Multiplications start enabled by default
-
-### Example Processing
-```
-Input: xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))
-Part 1 Output: 161 (processes all valid multiplications)
-Part 2 Output: 48 (only processes enabled multiplications)
-```
+class SearchState
+{
+    public required PriorityQueue<SearchNode, int> Queue { get; set; }
+    public required Dictionary<State, int> CostToState { get; set; }
+    public required HashSet<Point> OptimalTiles { get; set; }
+    public required List<HashSet<Point>> PathsToExplore { get; set; }
+    public int MinCost { get; set; }
+}
