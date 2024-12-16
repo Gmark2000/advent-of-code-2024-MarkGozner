@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (15/25)
+## Progress (16/25)
 
 | Day | Status | Solution |
 |-----|--------|-----------|
@@ -21,7 +21,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 13: Claw Contraption](https://adventofcode.com/2024/day/13) | ✅ | [Solution](Day13/) |
 | [Day 14: Restroom Redoubt](https://adventofcode.com/2024/day/14) | ✅ | [Solution](Day14/) |
 | [Day 15: Warehouse Woes](https://adventofcode.com/2024/day/15) | ✅ | [Solution](Day15/) |
-| [Day 16](https://adventofcode.com/2024/day/16) | ⬜ | |
+| [Day 16: Reindeer Maze](https://adventofcode.com/2024/day/16) | ✅ | [Solution](Day16/) |
 | [Day 17](https://adventofcode.com/2024/day/17) | ⬜ | |
 | [Day 18](https://adventofcode.com/2024/day/18) | ⬜ | |
 | [Day 19](https://adventofcode.com/2024/day/19) | ⬜ | |
