@@ -1,187 +1,47 @@
-const int East = 0, South = 1, West = 2, North = 3;
-const int MoveCost = 1;
-const int RotateCost = 1000;
+var lines = File.ReadLines("input.txt").ToArray();
+var registers = (
+    A: int.Parse(lines[0].Split(':')[1]),
+    B: int.Parse(lines[1].Split(':')[1]),
+    C: int.Parse(lines[2].Split(':')[1])
+);
+var program = lines[4].Split(':')[1].Split(',').Select(int.Parse).ToArray();
 
-const char Wall = '#';
-const char Start = 'S';
-const char End = 'E';
+var output = SolvePartOne(registers, program);
+Console.WriteLine(string.Join(",", output));
 
-string[] grid = File.ReadAllLines("input.txt");
-var (start, end) = FindStartAndEnd(grid);
-var (minCost, optimalTileCount) = SolveMaze(grid, start, end);
-
-Console.WriteLine($"Part 1: {minCost}");
-Console.WriteLine($"Part 2: {optimalTileCount}");
-
-return 0;
-
-static (Point start, Point end) FindStartAndEnd(string[] grid)
+static List<int> SolvePartOne((int A, int B, int C) registers, int[] program)
 {
-    Point start = default, end = default;
-    for (int y = 0; y < grid.Length; y++)
+    List<int> output = [];
+    var ip = 0;
+    var (a, b, c) = registers;
+
+    while (ip < program.Length - 1)
     {
-        for (int x = 0; x < grid[y].Length; x++)
+        var opcode = program[ip];
+        var operand = program[ip + 1];
+        var combo = operand switch
         {
-            if (grid[y][x] == Start) start = new(x, y);
-            if (grid[y][x] == End) end = new(x, y);
-        }
-    }
-    return (start, end);
-}
+            <= 3 => operand,
+            4 => a,
+            5 => b,
+            6 => c,
+            _ => throw new InvalidOperationException($"Invalid operand: {operand}")
+        };
 
-static (int minCost, int optimalTileCount) SolveMaze(string[] grid, Point start, Point end)
-{
-    var width = grid[0].Length;
-    var height = grid.Length;
-
-    var searchState = InitializeSearchState(start);
-    var result = ExploreAllPaths(searchState, grid, start, end, width, height);
-    ExploreOptimalPaths(result.optimalTiles, result.pathsToExplore);
-
-    return (result.minCost, result.optimalTiles.Count);
-}
-
-static SearchState InitializeSearchState(Point start)
-{
-    var state = new SearchState
-    {
-        Queue = new PriorityQueue<SearchNode, int>(),
-        CostToState = [],
-        OptimalTiles = [],
-        PathsToExplore = [],
-        MinCost = int.MaxValue
-    };
-
-    var initialNode = new SearchNode(new State(start, East), new HashSet<Point> { start }, 0);
-    state.Queue.Enqueue(initialNode, 0);
-    return state;
-}
-
-static (int minCost, HashSet<Point> optimalTiles, List<HashSet<Point>> pathsToExplore)
-ExploreAllPaths(SearchState state, string[] grid, Point start, Point end, int width, int height)
-{
-    while (state.Queue.Count > 0)
-    {
-        var current = state.Queue.Dequeue();
-
-        if (!ShouldContinueExploration(state, current))
-            continue;
-
-        state.CostToState[current.CurrentState] = current.Cost;
-
-        if (HasReachedEnd(state, current, end))
-            continue;
-
-        ExploreNextStates(state, current, grid, width, height);
-    }
-
-    return (state.MinCost, state.OptimalTiles, state.PathsToExplore);
-}
-
-static bool ShouldContinueExploration(SearchState state, SearchNode current)
-{
-    if (current.Cost > state.MinCost)
-        return false;
-
-    if (state.CostToState.TryGetValue(current.CurrentState, out var knownCost))
-    {
-        if (current.Cost > knownCost)
-            return false;
-
-        if (current.Cost == knownCost)
+        switch (opcode)
         {
-            foreach (var tile in current.Path)
-                state.OptimalTiles.Add(tile);
+            case 0: a = a / (1 << combo); break;
+            case 1: b ^= operand; break;
+            case 2: b = combo % 8; break;
+            case 3: if (a != 0) { ip = operand; continue; } break;
+            case 4: b ^= c; break;
+            case 5: output.Add(combo % 8); break;
+            case 6: b = a / (1 << combo); break;
+            case 7: c = a / (1 << combo); break;
         }
+
+        ip += 2;
     }
 
-    return true;
-}
-
-static bool HasReachedEnd(SearchState state, SearchNode current, Point end)
-{
-    if (!current.CurrentState.Pos.Equals(end))
-        return false;
-
-    if (current.Cost < state.MinCost)
-    {
-        state.MinCost = current.Cost;
-        state.OptimalTiles.Clear();
-        state.PathsToExplore.Clear();
-    }
-
-    if (current.Cost == state.MinCost)
-    {
-        state.PathsToExplore.Add(current.Path);
-        foreach (var tile in current.Path)
-            state.OptimalTiles.Add(tile);
-    }
-
-    return true;
-}
-
-static void ExploreNextStates(SearchState state, SearchNode current, string[] grid, int width, int height)
-{
-    foreach (var next in GetNextStates(current.CurrentState, grid, width, height))
-    {
-        var newCost = current.Cost + (next.isRotation ? RotateCost : MoveCost);
-
-        if (newCost <= state.MinCost)
-        {
-            var newPath = new HashSet<Point>(current.Path) { next.state.Pos };
-            var nextNode = new SearchNode(next.state, newPath, newCost);
-            state.Queue.Enqueue(nextNode, newCost);
-        }
-    }
-}
-
-static IEnumerable<(State state, bool isRotation)> GetNextStates(
-    State current, string[] grid, int width, int height)
-{
-    yield return (current with { Dir = (current.Dir + 3) % 4 }, true);
-    yield return (current with { Dir = (current.Dir + 1) % 4 }, true);
-
-    var (dx, dy) = GetDirectionOffset(current.Dir);
-    var newPos = new Point(current.Pos.X + dx, current.Pos.Y + dy);
-
-    if (IsValidMove(newPos, grid, width, height))
-    {
-        yield return (new State(newPos, current.Dir), false);
-    }
-}
-
-static (int dx, int dy) GetDirectionOffset(int direction) => direction switch
-{
-    East => (1, 0),
-    South => (0, 1),
-    West => (-1, 0),
-    North => (0, -1),
-    _ => throw new NotImplementedException()
-};
-
-static bool IsValidMove(Point p, string[] grid, int width, int height) =>
-    p.X >= 0 && p.X < width &&
-    p.Y >= 0 && p.Y < height &&
-    grid[p.Y][p.X] != Wall;
-
-static void ExploreOptimalPaths(HashSet<Point> optimalTiles, List<HashSet<Point>> pathsToExplore)
-{
-    foreach (var path in pathsToExplore)
-    {
-        foreach (var tile in path)
-            optimalTiles.Add(tile);
-    }
-}
-
-record struct Point(int X, int Y);
-record struct State(Point Pos, int Dir);
-record struct SearchNode(State CurrentState, HashSet<Point> Path, int Cost);
-
-class SearchState
-{
-    public required PriorityQueue<SearchNode, int> Queue { get; set; }
-    public required Dictionary<State, int> CostToState { get; set; }
-    public required HashSet<Point> OptimalTiles { get; set; }
-    public required List<HashSet<Point>> PathsToExplore { get; set; }
-    public int MinCost { get; set; }
+    return output;
 }
