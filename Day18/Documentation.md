@@ -75,11 +75,6 @@ const int gridSize = 71;
      * Skip if obstacle
      * Update if shorter path found
      * Add to queue with new distance
-
-3. Optimizations:
-   - Early termination at end point
-   - Skip if new distance not shorter
-   - Efficient neighbor validation
 ```
 
 #### Part 2: Binary Search with BFS
