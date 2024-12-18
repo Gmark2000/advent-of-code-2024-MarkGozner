@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (17/25)
+## Progress (18/25)
 
 | Day | Part One | Part Two | Solution |
 |-----|--------|--------|-----------|
@@ -23,7 +23,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 15: Warehouse Woes](https://adventofcode.com/2024/day/15) | ✅ | ✅ | [Solution](Day15/) |
 | [Day 16: Reindeer Maze](https://adventofcode.com/2024/day/16) | ✅ | ✅ | [Solution](Day16/) |
 | [Day 17: Chronospatial Computer](https://adventofcode.com/2024/day/17) | ✅ | ✅ | [Solution](Day17/) |
-| [Day 18](https://adventofcode.com/2024/day/18) | ⬜ | ⬜ | |
+| [Day 18: RAM Run](https://adventofcode.com/2024/day/18) | ✅ | ✅ | [Solution](Day18/) |
 | [Day 19](https://adventofcode.com/2024/day/19) | ⬜ | ⬜ | |
 | [Day 20](https://adventofcode.com/2024/day/20) | ⬜ | ⬜ | |
 | [Day 21](https://adventofcode.com/2024/day/21) | ⬜ | ⬜ | |
