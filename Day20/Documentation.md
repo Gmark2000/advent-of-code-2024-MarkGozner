@@ -1,4 +1,4 @@
-# Day 20: Race Condition
+# Advent of Code 2024 - Day 20: Race Condition
 
 ## Problem Overview
 This program solves a pathfinding challenge where a program must navigate through a racetrack from start (S) to end (E), with the ability to cheat by passing through walls for a limited time.
