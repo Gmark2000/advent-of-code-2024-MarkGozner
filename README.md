@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (19/25)
+## Progress (20/25)
 
 | Day | Part One | Part Two | Solution |
 |-----|--------|--------|-----------|
@@ -25,7 +25,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 17: Chronospatial Computer](https://adventofcode.com/2024/day/17) | ✅ | ✅ | [Solution](Day17/) |
 | [Day 18: RAM Run](https://adventofcode.com/2024/day/18) | ✅ | ✅ | [Solution](Day18/) |
 | [Day 19: Linen Layout](https://adventofcode.com/2024/day/19) | ✅ | ✅ | [Solution](Day19/) |
-| [Day 20](https://adventofcode.com/2024/day/20) | ⬜ | ⬜ | |
+| [Day 20: Race Condition](https://adventofcode.com/2024/day/20) | ✅ | ✅ | [Solution](Day20/) |
 | [Day 21](https://adventofcode.com/2024/day/21) | ⬜ | ⬜ | |
 | [Day 22](https://adventofcode.com/2024/day/22) | ⬜ | ⬜ | |
 | [Day 23](https://adventofcode.com/2024/day/23) | ⬜ | ⬜ | |
