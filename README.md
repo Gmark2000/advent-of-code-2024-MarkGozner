@@ -27,7 +27,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 19: Linen Layout](https://adventofcode.com/2024/day/19) | ✅ | ✅ | [Solution](Day19/) |
 | [Day 20: Race Condition](https://adventofcode.com/2024/day/20) | ✅ | ✅ | [Solution](Day20/) |
 | [Day 21: Keypad Conundrum](https://adventofcode.com/2024/day/21) | ✅ | ✅ | [Solution](Day21/) |
-| [Day 22](https://adventofcode.com/2024/day/22) | ✅ | ✅ | [Solution](Day22/) |
+| [Day 22: Monkey Market](https://adventofcode.com/2024/day/22) | ✅ | ✅ | [Solution](Day22/) |
 | [Day 23](https://adventofcode.com/2024/day/23) | ⬜ | ⬜ | |
 | [Day 24](https://adventofcode.com/2024/day/24) | ⬜ | ⬜ | |
 | [Day 25](https://adventofcode.com/2024/day/25) | ⬜ | ⬜ | |
