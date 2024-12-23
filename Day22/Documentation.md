@@ -1,4 +1,4 @@
-# Monkey Market - Technical Documentation
+# Advent of Code 2024 - Day 22: Monkey Market
 
 ## Problem Overview
 This program solves a trading challenge in the Monkey Exchange Market where buyers use pseudorandom sequences to determine prices. The challenge involves:
