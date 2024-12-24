@@ -29,7 +29,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 21: Keypad Conundrum](https://adventofcode.com/2024/day/21) | ✅ | ✅ | [Solution](Day21/) |
 | [Day 22: Monkey Market](https://adventofcode.com/2024/day/22) | ✅ | ✅ | [Solution](Day22/) |
 | [Day 23: LAN Party](https://adventofcode.com/2024/day/23) | ✅ | ✅ | [Solution](Day23/) |
-| [Day 24](https://adventofcode.com/2024/day/24) | ✅ | ✅ | [Solution](Day24/) |
+| [Day 24: Crossed Wires](https://adventofcode.com/2024/day/24) | ✅ | ✅ | [Solution](Day24/) |
 | [Day 25](https://adventofcode.com/2024/day/25) | ⬜ | ⬜ | |
 
 ## Structure
