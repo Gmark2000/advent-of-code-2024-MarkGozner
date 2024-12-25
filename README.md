@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (24/25)
+## Progress (25/25) 🎄🎅
 
 | Day | Part One | Part Two | Solution |
 |-----|--------|--------|-----------|
@@ -30,7 +30,7 @@ Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 | [Day 22: Monkey Market](https://adventofcode.com/2024/day/22) | ✅ | ✅ | [Solution](Day22/) |
 | [Day 23: LAN Party](https://adventofcode.com/2024/day/23) | ✅ | ✅ | [Solution](Day23/) |
 | [Day 24: Crossed Wires](https://adventofcode.com/2024/day/24) | ✅ | ✅ | [Solution](Day24/) |
-| [Day 25](https://adventofcode.com/2024/day/25) | ⬜ | ⬜ | |
+| [Day 25: Code Chronicle](https://adventofcode.com/2024/day/25) | ✅ | ✅ | [Solution](Day25/)|
 
 ## Structure
 
