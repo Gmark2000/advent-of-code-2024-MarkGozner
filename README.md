@@ -2,7 +2,7 @@
 
 Solutions for [Advent of Code 2024](https://adventofcode.com/2024) in C#.
 
-## Progress (25/25) 🎄🎅
+## Progress (25/25) 
 
 | Day | Part One | Part Two | Solution |
 |-----|--------|--------|-----------|
@@ -40,5 +40,7 @@ Each day's solution is in its own directory (Day01, Day02, etc.) containing:
 - Documentation of the approach (Documentation.md)
 
 Solutions are written in C#.
+
+🎄🎅
 
 @Gmark2000
